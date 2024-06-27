@@ -14,6 +14,8 @@ drawTrebleCleff();
 
 drawFlatSharpSymbol();
 
+drawNote('C');
+
 
 
 function drawStaff (ctx, index) {
@@ -23,6 +25,8 @@ function drawStaff (ctx, index) {
     ctx.lineTo(1000, 130 + (index * staffSpacing));
     ctx.lineWidth = 1.5;
     ctx.stroke();
+
+    ctx.closePath();
 }
 
 function drawTrebleCleff () {
@@ -43,6 +47,8 @@ function drawTrebleCleff () {
     
         ctx.drawImage(img, 70, 115, width, height);
     }
+
+    ctx.closePath();
 }
 
 function drawFlatSharpSymbol(isFlat=false)
@@ -51,6 +57,21 @@ function drawFlatSharpSymbol(isFlat=false)
 
     ctx.font = "bold 38px 'Times New Roman'";
     ctx.fillText(char, 145, 140);
+    ctx.stroke();
+    ctx.closePath();
 }
 
-
+function drawNote(note) {
+    switch (note) {
+        case 'C': {
+            ctx.moveTo(200, 130 + (15 * 5));
+            ctx.arc(200, 130 + (15 * 5), 8, 0, 360);
+            ctx.fillStyle = '#000000';
+            ctx.fill();
+            ctx.stroke();
+            ctx.moveTo(185, 130 + (15 * 5));
+            ctx.lineTo(215, 130 + (15 * 5));
+            ctx.stroke();
+        }
+    }
+}
