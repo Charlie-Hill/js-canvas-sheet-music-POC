@@ -17,7 +17,6 @@ const NOTES_POS = {
     'E2': 0.5,
     'F2': 0
 }
-// https://www.key-notes.com/blog/key-signature-chart
 const KEY_SIGNATURES = {
     'Cmaj' : [], // Relative = AMinor
     'Gmaj': ['Fs'], // Relative = EMinor
@@ -55,6 +54,16 @@ drawNote('F');
 drawNote('G');
 drawNote('A');
 
+
+ctx.beginPath()
+ctx.font = "bold 38px 'Times New Roman'";
+ctx.moveTo(50, 50)
+ctx.fillText(KEY_SIGNATURES.CbMaj + ' Major', 50, 50)
+ctx.stroke()
+ctx.closePath()
+
+renderKeySignature(KEY_SIGNATURES.CbMaj)
+
 console.log(notes)
 
 function drawStaff (ctx, index) {
@@ -90,12 +99,12 @@ function drawTrebleCleff () {
     ctx.closePath();
 }
 
-function drawFlatSharpSymbol(isFlat=false)
+function drawFlatSharpSymbol(x, y, isFlat=false)
 {
     const char = isFlat ? '♭' : '♯';
-
-    ctx.font = "bold 38px 'Times New Roman'";
-    ctx.fillText(char, 145, 140);
+    ctx.beginPath()
+    ctx.font = "bold 28px 'Times New Roman'";
+    ctx.fillText(char, x, y);
     ctx.stroke();
     ctx.closePath();
 }
@@ -136,11 +145,32 @@ function drawNote(note) {
 }
 
 function renderKeySignature (keySignature) {
-    ctx.beginPath();
+    keySignature.forEach((note, count) => renderKeySignatureNote(note, count))
+}
 
-    keySignature.forEach(note => {
-        
-    })
-
-    ctx.endPath();
+function renderKeySignatureNote (note, count) {
+    const x = 145 + (12 * count);
+    switch (note) {
+        case 'Bb':
+            drawFlatSharpSymbol(x, 165, true)
+            break;
+        case 'Eb':
+            drawFlatSharpSymbol(x, 145, true)
+            break;
+        case 'Ab':
+            drawFlatSharpSymbol(x, 175, true)
+            break;
+        case 'Db':
+            drawFlatSharpSymbol(x, 150, true)
+            break;
+        case 'Gb':
+            drawFlatSharpSymbol(x, 180, true)
+            break;
+        case 'Cb':
+            drawFlatSharpSymbol(x, 160, true)
+            break;
+        case 'Fb':
+            drawFlatSharpSymbol(x, 190, true)
+            break;
+    }
 }
