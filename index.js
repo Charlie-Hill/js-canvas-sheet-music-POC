@@ -150,27 +150,30 @@ function renderKeySignature (keySignature) {
 
 function renderKeySignatureNote (note, count) {
     const x = 145 + (12 * count);
-    switch (note) {
-        case 'Bb':
-            drawFlatSharpSymbol(x, 165, true)
+    let y = 145;
+    switch (note[0]) {
+        case 'B':
+            y += 20;
             break;
-        case 'Eb':
-            drawFlatSharpSymbol(x, 145, true)
+        case 'E':
+            y += 0;
             break;
-        case 'Ab':
-            drawFlatSharpSymbol(x, 175, true)
+        case 'A':
+            y += 30;
             break;
-        case 'Db':
-            drawFlatSharpSymbol(x, 150, true)
+        case 'D':
+            y += 5;
             break;
-        case 'Gb':
-            drawFlatSharpSymbol(x, 180, true)
+        case 'G':
+            y += 35;
             break;
-        case 'Cb':
-            drawFlatSharpSymbol(x, 160, true)
+        case 'C':
+            y += 15;
             break;
-        case 'Fb':
-            drawFlatSharpSymbol(x, 190, true)
+        case 'F':
+            y += 45;
             break;
     }
+
+    drawFlatSharpSymbol(x, y, (note[1] === 'b'))
 }
