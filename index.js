@@ -58,11 +58,11 @@ drawNote('A');
 ctx.beginPath()
 ctx.font = "bold 38px 'Times New Roman'";
 ctx.moveTo(50, 50)
-ctx.fillText(KEY_SIGNATURES.CbMaj + ' Major', 50, 50)
+ctx.fillText(KEY_SIGNATURES.CsMaj + ' Major', 50, 50)
 ctx.stroke()
 ctx.closePath()
 
-renderKeySignature(KEY_SIGNATURES.CbMaj)
+renderKeySignature(KEY_SIGNATURES.CsMaj)
 
 console.log(notes)
 
@@ -165,13 +165,13 @@ function renderKeySignatureNote (note, count) {
             y += 5;
             break;
         case 'G':
-            y += 35;
+            note[1] == 'b' ? (y += 35) : (y -= 15);
             break;
         case 'C':
             y += 15;
             break;
         case 'F':
-            y += 45;
+            note[1] == 'b' ? (y += 45) : (y -= 5);
             break;
     }
 
